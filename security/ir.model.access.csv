@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_conduite_changement,conduite_changement.gestion_partie_prenante,model_conduite_changement_gestion_partie_prenante,base.group_user,1,1,1,1
+access_conduite_changement_registre,registre_pp.registre,model_registre_pp_registre,base.group_user,1,1,1,1

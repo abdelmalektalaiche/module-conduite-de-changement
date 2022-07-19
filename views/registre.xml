@@ -1,0 +1,112 @@
+<odoo>
+    <data>
+        <record id="view_registre_tree" model="ir.ui.view" >
+        
+            <field name="name">treeregistre</field>
+            <field name="model">registre_pp.registre</field>
+            <field name="arch" type="xml"> 
+                <tree string="registre tree">
+                    <field name="idReg"/>
+                    <field name="date"/>
+                    <field name="dateV"/>
+                    <field name="numV"/>
+                </tree>
+            </field>
+        </record>
+        <record id="increment_your_field_sequence_idReg" model="ir.sequence">
+            <field name="name">Field Incrementation</field>
+            <field name="code">increment_your_field</field>
+            <field name="prefix">reg</field>
+            <field name="padding">3</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="increment_your_field_sequence" model="ir.sequence">
+            <field name="name">Field Incrementation</field>
+            <field name="code">increment_your_field_identifiant</field>
+            <field name="prefix">P</field>
+            <field name="padding">1</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="view_registre_form" model="ir.ui.view"> 
+            <field name="name">formregistre</field>
+            <field name="model">registre_pp.registre</field>
+            <field name="arch" type="xml">
+              <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="idReg"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name ="project_id"/>
+                        <field name="date"/>
+                        <field name="dateV"/>
+                        <field name="numV"/>
+                    </group>
+                    <notebook>
+                        <page string="Liste des parties prenantes">
+      
+                            <field name="partie_prenante_id" widget="one2many_list">
+                                <tree>
+                                    <field name="identifiant"/>
+                                    <field name="partner_id" domain="[(('is_company', '=', False))]"/>
+                                    <field name="type"/>
+                                    <field name="role"/>
+                                    <field name="interet"/>
+                                    <field name="pouvoir"/>
+                                    <field name="strategie"/>
+                                    <field name="contribution"/>
+                                    <field name="attentes"/>
+                                    <field name="actions"/>
+                                    <field name="engagement"/>
+                                    <field name="email"/>
+                                    
+                                </tree>
+                                <form>
+                                    <group> 
+                                    <field name="identifiant"/>
+                                    <field name="partner_id" domain="[(('is_company', '=', False))]"/>
+                                    </group>
+                                     <group>                             
+                                      <field name="type" />
+                                      <field name="role"/>
+                                      <field name="interet"/>
+                                      <field name="pouvoir"/>
+                                      <field name="strategie"/> 
+                                      <field name="contribution"/>
+                                      <field name="attentes"/>
+                                      <field name="actions"/>
+                                      <field name="engagement"/>
+                                      <field name="email"/>
+                                    </group>
+        
+                                  </form>
+                            </field>
+      
+      
+                        </page>
+      
+                      </notebook>
+                </sheet>
+              </form>
+            </field>
+        </record>
+    
+        <record id="action_open_view_registre" model="ir.actions.act_window">
+            <field name="name">Registres des parties prenantes</field>
+            <field name="res_model">registre_pp.registre</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_registre_tree"/>
+        </record>
+    
+        <menuitem id="registre_pp" name="Gestion des registres parties prenantes"/>
+        <menuitem id="registre_menu" name="Registres des parties prenantes" sequence="20" action="action_open_view_registre" parent="registre_pp"/>
+    </data>
+    </odoo>

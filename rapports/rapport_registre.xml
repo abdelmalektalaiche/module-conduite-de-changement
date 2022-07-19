@@ -1,0 +1,83 @@
+<odoo>
+<record id="report_registre" model="ir.actions.report">
+    <field name="name">Registre des Parties Prenantes de Projet</field>
+    <field name="model">registre_pp.registre</field>
+    <field name="report_type">qweb-pdf</field>
+    <field name="report_name">conduite_changement.report_registre</field>
+    <field name="report_file">conduite_changement.report_registre</field>
+    <field name="binding_model_id" ref="model_registre_pp_registre"/>
+    <field name="binding_type">report</field>
+</record>
+
+<template id="report_registre">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="rsrc">
+                <t t-call="web.external_layout">
+                    <h2>Table des Parties Prenantes</h2>
+                    <div class="page">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nom</th>
+                                    <th>Type</th>
+                                    <th>Role</th>
+                                    <th>Interet</th>
+                                    <th>Pouvoir</th>
+                                    <th>Strtégie</th>
+                                    <th>Contribution</th>
+                                    <th>Attentes</th>
+                                    <th>Actions</th>
+                                    <th>Contact</th>
+                                </tr>
+                            </thead>
+                            <t t-foreach="rsrc.partie_prenante_id" t-as="dmd">
+                                <tr >
+                                    <td>
+                                        <span t-field="dmd.identifiant"/>
+                                    </td>
+
+                                    <td>
+                                        <span t-field="dmd.partner_id"/>
+                                    </td>
+
+                                    <td>
+                                        <span t-field="dmd.type"/>
+                                    </td>
+
+                                    <td>
+                                        <span t-field="dmd.role"/>
+                                    </td>
+
+                                    <td>
+                                        <span t-field="dmd.interet"/>
+                                    </td>
+
+                                    <td>
+                                        <span t-field="dmd.pouvoir"/>
+                                    </td>
+
+                                    <td>
+                                        <span t-field="dmd.strategie"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="dmd.contribution"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="dmd.attentes"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="dmd.actions"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="dmd.email"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+</template>
+</odoo>
